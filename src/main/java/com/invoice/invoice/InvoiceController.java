@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/invoice")
+@RequestMapping("/api/invoices")
 public class InvoiceController {
     private final InvoiceService invoiceService;
 
@@ -27,6 +27,12 @@ public class InvoiceController {
 
     @PostMapping
     public Invoice createInvoice(@RequestBody Invoice invoice) {
+        System.out.println("Received Invoice: " + invoice);
+
+        if (invoice == null) {
+            System.out.println("Invoice is null after deserialization!");
+            return null;
+        }
         invoice.calculateTotal();
         return invoiceService.createInvoice(invoice);
     }

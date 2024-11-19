@@ -1,7 +1,9 @@
 package com.invoice.invoice;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,12 +18,18 @@ public class Invoice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id")
     private Long id;
 
+    @JsonProperty("itemName")
     private String itemName;
+    @JsonProperty("itemPrice")
     private BigDecimal itemPrice;
+    @JsonProperty("quantity")
     private int quantity;
+    @JsonProperty("invoiceNumber")
     private String invoiceNumber;
+    @JsonProperty("total")
     private BigDecimal total;
     @CreationTimestamp
     private Date createdAt;
